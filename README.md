@@ -2,10 +2,12 @@
 Prodbs Analytics: A Web Application for Online Product Bundles and Reviews Utilizing Market Basket and Sentiment Analysis.
 
 ## Requirements
-- 'nodejs'
-- 'npm'
+- `nodejs`
+- `npm`
 
 ## Installation
+- `npm install -g @vue/cli`
+- `npm install -g json-server`
 - `git clone https://github.com/dotSIS/Prodbs.git`
   ### Front-end
   - `cd Prodbs/frontend`
