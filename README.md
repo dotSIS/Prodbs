@@ -21,5 +21,5 @@ Prodbs Analytics: A Web Application for Online Product Bundles and Reviews Utili
   ### Options API
   - `json-server --watch data/db.json`
   ### Options API endpoints
-  - `localhost:3000/products/`
+  - `localhost:3000/products`
   - NOTE: This is a temporary API.
