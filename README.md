@@ -18,6 +18,8 @@ Prodbs Analytics: A Web Application for Online Product Bundles and Reviews Utili
     - `open http://localhost:8080`
   ### Back-end
   - `to be merged`
+  ### Options API
+  - `json-server --watch data/db.json`
 
 ## Options API endpoints
 - `localhost:3000/products/`
