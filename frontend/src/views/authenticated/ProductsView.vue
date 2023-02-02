@@ -1,15 +1,17 @@
 <template>
   <h1>Products</h1>
-  <div v-if="products.length">
-    <div v-for="product in products" :key="product.id" class="product">
-      <router-link :to="{name: 'ProductDetails', params: { id: product.id }}">
-        <h2>{{ product.title }}</h2>
-      </router-link>
+  <Transition>
+    <div v-if="products.length">
+      <div v-for="product in products" :key="product.id" class="product">
+        <router-link :to="{name: 'ProductDetails', params: { id: product.id }}">
+          <h2>{{ product.title }}</h2>
+        </router-link>
+      </div>
     </div>
-  </div>
-  <div v-else>
-    <p>Loading products...</p>
-  </div>
+    <div v-else>
+      <p>Loading products...</p>
+    </div>
+  </Transition>
 </template>
 
 <script>
