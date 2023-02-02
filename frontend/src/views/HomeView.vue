@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <h1>Login</h1>
+    <h1>Welcome to Prodbs Analytics</h1>
   </div>
 </template>
 
@@ -10,3 +10,6 @@ export default {
   components: {}
 }
 </script>
+
+<style>
+</style>
