@@ -1,28 +1,29 @@
 <template>
+  <img id="logo" src="./assets/logo.svg" alt="Prodbs Analytics logo">
   <div id="nav">
     <router-link :to="{ name: 'Home' }">Home</router-link>
     <router-link :to="{ name: 'About' }">About</router-link>
     <router-link :to="{ name: 'Products' }">Products</router-link>
   </div>
-  <button @click="redirect">Redirect</button>
+  <!-- <button @click="redirect">Redirect</button>
   <button @click="back">Go back</button>
-  <button @click="forward">Go forward</button>
+  <button @click="forward">Go forward</button> -->
   <router-view/>
 </template>
 
 <script>
 export default {
-   methods: {
-    redirect() {
-      this.$router.push({ name: 'Home' })
-    },
-    back() {
-      this.$router.go(-1)
-    },
-    forward() {
-      this.$router.go(1)
-    }
-  }
+  //  methods: {
+  //   redirect() {
+  //     this.$router.push({ name: 'Home' })
+  //   },
+  //   back() {
+  //     this.$router.go(-1)
+  //   },
+  //   forward() {
+  //     this.$router.go(1)
+  //   }
+  // }
 }
 </script>
 
@@ -35,6 +36,11 @@ export default {
   color: #2c3e50;
   max-width: 960px;
   margin: 0 auto;
+}
+
+#logo {
+  width: 20%;
+  height: 20%;
 }
 
 #nav {
