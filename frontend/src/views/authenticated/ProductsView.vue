@@ -1,17 +1,28 @@
 <template>
   <h1>Products</h1>
-  <Transition>
-    <div v-if="products.length">
-      <div v-for="product in products" :key="product.id" class="product">
-        <router-link :to="{name: 'ProductDetails', params: { id: product.id }}">
-          <h2>{{ product.title }}</h2>
-        </router-link>
+  <div class="box">
+    <div class="user-options">
+      <a href="">View Products</a>
+      <a href="">Generate Bundle</a>
+      <a href="">View Bundles</a>
+      <a href="">View Analytics</a>
+    </div>
+    <Transition>
+      <div v-if="products.length">
+        <div v-for="product in products" :key="product.id" class="product">
+          <router-link :to="{name: 'ProductDetails', params: { id: product.id }}">
+            <h2>
+              <img src="../../assets/dis1.png" alt="product image">
+              {{ product.title }}
+            </h2>
+          </router-link>
+        </div>
       </div>
-    </div>
-    <div v-else>
-      <p>Loading products...</p>
-    </div>
-  </Transition>
+      <div v-else>
+        <p>Loading products...</p>
+      </div>
+    </Transition>
+  </div>
 </template>
 
 <script>
@@ -31,7 +42,30 @@ export default {
 </script>
 
 <style>
-  .product h2{
+  .box {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  .user-options {
+    margin: 10px;
+    display: inline-flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .user-options a {
+    font-size: 15px;
+    background: white;
+    border: 1px solid #42b983;
+    border-radius: 25px;
+    text-decoration: none;
+  }
+  .user-options a:hover {
+    color: white;
+    background: #42b983;
+    border: 1px solid black;
+  }
+  .product h2 {
     background: #f4f4f4;
     padding: 20px;
     border-radius: 10px;
@@ -43,7 +77,11 @@ export default {
   .product h2:hover {
     background: #ddd;
   }
-  .product a{
+  .product a {
     text-decoration: none;
+  }
+  .product img {
+    width: 5%;
+    height: 5%;
   }
 </style>
