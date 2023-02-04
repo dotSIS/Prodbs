@@ -1,4 +1,13 @@
 <template>
+  <div class="box">
+    <div class="user-options">
+        <router-link :to="{ name: 'Products' }">View Products</router-link>
+        <router-link :to="{ name: 'GenerateBundle' }">Generate Bundle</router-link>
+        <router-link :to="{ name: 'ViewBundles' }">View Bundles</router-link>
+        <router-link :to="{ name: 'ViewAnalytics' }">View Analytics</router-link>
+    </div>
+    <router-view/>
+  </div>
   <div v-if="product">
     <h1>{{ product.title }}</h1>
     <p>{{ product.details }}</p>
