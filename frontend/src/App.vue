@@ -5,27 +5,13 @@
     <router-link :to="{ name: 'Login' }">Login</router-link>
     <router-link :to="{ name: 'Help' }">Help</router-link>
     <router-link :to="{ name: 'About' }">About</router-link>
-    <router-link :to="{ name: 'Products' }">Products</router-link>
+    <router-link :to="{ name: 'Profile' }">Profile</router-link>
   </div>
-  <!-- <button @click="redirect">Redirect</button>
-  <button @click="back">Go back</button>
-  <button @click="forward">Go forward</button> -->
   <router-view/>
 </template>
 
 <script>
 export default {
-  //  methods: {
-  //   redirect() {
-  //     this.$router.push({ name: 'Home' })
-  //   },
-  //   back() {
-  //     this.$router.go(-1)
-  //   },
-  //   forward() {
-  //     this.$router.go(1)
-  //   }
-  // }
 }
 </script>
 
