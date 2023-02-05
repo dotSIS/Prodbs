@@ -8,4 +8,5 @@ admin.site.register(BundleProducts)
 admin.site.register(Reviews)
 admin.site.register(Sentiment)
 admin.site.register(Orders)
+# admin.site.register(ReviewSentiment)
 
