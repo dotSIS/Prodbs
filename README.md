@@ -34,7 +34,8 @@ Prodbs Analytics: A Web Application for Online Product Bundles and Reviews Utili
     POST
   - `http://localhost:8000/products` 
      E.g. POST REQUEST
-    ` {
+     
+    - ` {
         "id": "221ys",
         "brand": "Esse sit possimus",
         "category": "Iure facere labore q",
@@ -46,4 +47,4 @@ Prodbs Analytics: A Web Application for Online Product Bundles and Reviews Utili
         "about": "Nemo quo corporis re",
         "price": 705.0,
         "sellerID": "221x"
-    }`
+     }`
