@@ -63,9 +63,9 @@ class Reviews(models.Model):
 class Sentiment(models.Model):
     id = models.AutoField(primary_key=True)
     reviewID = models.ForeignKey(Reviews,on_delete=models.CASCADE)
-    postiveRate = models.FloatField()
+    positiveRate = models.FloatField()
     negativeRate = models.FloatField()
-    nuetralRate = models.FloatField()
+    neutralRate = models.FloatField()
     overallSentiment = models.CharField(max_length=100)
     def __str__(self) -> str:
         return str(self.id)

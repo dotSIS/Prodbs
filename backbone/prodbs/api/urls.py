@@ -17,6 +17,7 @@ urlpatterns = [
     path('reviews/<pk>/',ReviewDetails.as_view()),
     path('sentiments/',SentimentList.as_view()),
     path('sentiments/<pk>/',SentimentDetails.as_view()),
+    path('analizeproductreviews/',analizeProductReviews),
 
 
 ]

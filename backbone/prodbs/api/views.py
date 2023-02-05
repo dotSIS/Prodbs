@@ -1,4 +1,9 @@
 from rest_framework import generics
+from rest_framework import serializers
+from rest_framework import status
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from .tools import sentiment_scores
 from .models import *
 from .serializers import *
 
@@ -98,3 +103,33 @@ class SentimentList(generics.ListCreateAPIView):
 class SentimentDetails(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = SentimentSerializer
     queryset = Sentiment.objects.all()
+
+
+@api_view(['GET'])
+def analizeProductReviews(request):
+    serializer_class = SentimentSerializer
+    reviews = Reviews.objects.all()
+    product = request.query_params.get('product')
+    autoSave = True if request.query_params.get('autosave')=='true' else False
+    if product is not None:
+        reviews = reviews.filter(productID=product)
+    reviewsList = reviews.all()
+    sentiments = []
+    for review in reviewsList:
+        sentiment = sentiment_scores(review.textContent)
+        data = {
+            'positiveRate':sentiment['positive'],
+            'negativeRate':sentiment['negative'],
+            'neutralRate':sentiment['neutral'],
+            'overallSentiment':sentiment['overall'],
+            'reviewID':review.id
+        }
+        
+        if autoSave:
+            sentimentModel = SentimentSerializer(data=data)
+            if sentimentModel.is_valid():
+                sentimentModel.save()
+            else:
+                print("AHHHHHHHHHH")
+        sentiments.append(data)
+    return Response(sentiments)
