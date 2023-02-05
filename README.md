@@ -3,7 +3,7 @@ Prodbs Analytics: A Web Application for Online Product Bundles and Reviews Utili
 
 ## Clone
 - `git clone https://github.com/dotSIS/Prodbs.git`
-#### FRONTEND
+# FRONTEND
 ## Requirements
 - `nodejs`
 - `npm`
@@ -19,7 +19,7 @@ Prodbs Analytics: A Web Application for Online Product Bundles and Reviews Utili
   #### For deployment
   - `npm run build`
   - `open http://localhost:8080`
-#### BACKEND
+# BACKEND
   - `cd Prodbs/backbone`
   - `python env\Scripts\activate`
   - `cd prodbs`
@@ -28,10 +28,8 @@ Prodbs Analytics: A Web Application for Online Product Bundles and Reviews Utili
   ## Local Host
   - `python manage.py runserver`
   ## API call E.g.
-    GEt 
   - `http://localhost:8000/products` for getting all the products
   - `http://localhost:8000/products/<id>` for getting specific the product
-    POST
   - `http://localhost:8000/products` 
      E.g. POST REQUEST
      
