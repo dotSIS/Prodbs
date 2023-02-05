@@ -46,3 +46,6 @@ Prodbs Analytics: A Web Application for Online Product Bundles and Reviews Utili
         "price": 705.0,
         "sellerID": "221x"
      }`
+    ### Sentiment Analysis for specific product   
+  - `http://localhost:8000/analizeproductreviews/?product=221ys` by default it will just response list of sentiment
+  - `http://localhost:8000/analizeproductreviews/?product=221ys&autosave=true` by adding autosave=true, it will response and save the sentiment
