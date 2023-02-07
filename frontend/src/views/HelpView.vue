@@ -1,12 +1,15 @@
 <template>
     <div class="help">
-      <h1>Help Page</h1>
+        <h1>Help Page</h1>
     </div>
-  </template>
+</template>
   
-  <script>
-  export default {
+<script>
+export default {
     name: 'Help',
     components: {}
-  }
-  </script>
+}
+</script>
+
+<style>
+</style>

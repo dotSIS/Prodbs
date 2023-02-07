@@ -8,9 +8,11 @@
             <router-link :to="{ name: 'ViewAnalytics' }">View Analytics</router-link>
         </div>
         <router-view/>
-        <Transition>
-            <h2>Generate bundle area...</h2>
-        </Transition>
+        <div class="container">
+            <Transition>
+                <h2>Generate bundle area...</h2>
+            </Transition>
+        </div>
     </div>
 </template>
   
