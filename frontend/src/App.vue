@@ -6,9 +6,6 @@
         <router-link :to="{ name: 'Help' }">Help</router-link>
         <router-link :to="{ name: 'About' }">About</router-link>
         <router-link :to="{ name: 'Profile' }">Profile</router-link>
-        <!-- <span v-if="authenticated">
-          <router-link :to="{ name: 'Profile' }">Profile</router-link>
-        </span> -->
     </div>
     <router-view/>
 </template>
@@ -34,6 +31,8 @@
         padding: 30px;
     }
     #nav a {
+        width: 70px;
+        height: 43px;
         font-weight: bold;
         color: #2c3e50;
         text-decoration: none;
@@ -128,7 +127,23 @@
     }
     .container {
         width: 640px;
-        height: 276px;
+        height: 320px;
+        border: 1px solid #444;
+        border-radius: 5px;
+        overflow-y: auto;
+    }
+    div.sort button {
+        width: 75px;
+        height: 39px;
+        color: #42b983;
+        background: white;
+        padding: 10px;
+        border: 1px solid #42b983;
+    }
+    div.sort button:hover {
+        color: #2c3e50;
+        background: #42b983;
+        padding: 10px;
     }
     .product h2 {
         background: #f4f4f4;

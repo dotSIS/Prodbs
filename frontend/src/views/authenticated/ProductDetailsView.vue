@@ -10,6 +10,12 @@
         <router-view/>
         <div class="container">
             <div v-if="product">
+                <div class="sort">
+                    <button>All</button>
+                    <button>Positive</button>
+                    <button>Negative</button>
+                    <button>Neutral</button>
+                </div>
                 <h1>{{ product.title }}</h1>
                 <p>{{ product.details }}</p>
             </div>
