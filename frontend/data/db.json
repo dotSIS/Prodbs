@@ -2,6 +2,13 @@
     "products": [
         { "title": "Product 1", "id": 1, "details": "lorem" },
         { "title": "Product 2", "id": 2, "details": "lorem" },
-        { "title": "Product 3", "id": 3, "details": "lorem" }
+        { "title": "Product 3", "id": 3, "details": "lorem" },
+        { "title": "Product 4", "id": 4, "details": "lorem" },
+        { "title": "Product 5", "id": 5, "details": "lorem" },
+        { "title": "Product 6", "id": 6, "details": "lorem" },
+        { "title": "Product 7", "id": 7, "details": "lorem" },
+        { "title": "Product 8", "id": 8, "details": "lorem" },
+        { "title": "Product 9", "id": 9, "details": "lorem" },
+        { "title": "Product 10", "id": 10, "details": "lorem" }
     ]
 }
