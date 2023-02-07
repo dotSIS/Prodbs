@@ -40,6 +40,9 @@
         padding: 10px;
         border-radius: 4px;
     }
+    #nav a:hover {
+        background: #ddd;
+    }
     #nav a.router-link-exact-active {
         color: white;
         background: #42b983;
@@ -47,7 +50,7 @@
     .login-options a{
         background: #f4f4f4;
         padding: 20px;
-        border-radius: 10px;
+        border-radius: 25px;
         margin: 10px auto;
         max-width: 600px;
         cursor: pointer;
@@ -103,19 +106,25 @@
         margin: 10px;
         display: inline-flex;
         flex-direction: column;
-        gap: 5px;
+        gap: 15px;
     }
     .user-options a {
         font-size: 15px;
         background: white;
+        padding: 10px;
         border: 1px solid #42b983;
         border-radius: 25px;
         text-decoration: none;
     }
     .user-options a:hover {
+        color: #2c3e50;
+        border: 1px solid #ddd;
+        /* background: #42b983; */
+        background: #ddd;
+    }
+    .user-options a.router-link-exact-active {
         color: white;
         background: #42b983;
-        border: 1px solid black;
     }
     .container {
         width: 640px;
