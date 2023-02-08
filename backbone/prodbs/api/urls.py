@@ -18,6 +18,8 @@ urlpatterns = [
     path('sentiments/',SentimentList.as_view()),
     path('sentiments/<pk>/',SentimentDetails.as_view()),
     path('analizeproductreviews/',analizeProductReviews),
+    path('generatebundle/',generateBundle),
+    path('getanalytics/',getAnalytics),
 
 
 ]

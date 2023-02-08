@@ -10,21 +10,11 @@ class User(models.Model):
     def __str__(self) -> str:
         return self.firstName+" "+self.id
 
-class Orders(models.Model):
-    id = models.CharField(max_length=300,primary_key=True)
-    stockCode = models.CharField(max_length=100,)
-    description = models.CharField(max_length=100)
-    country = models.CharField(max_length=100)
-    quantity = models.IntegerField()
-    unitPrice = models.FloatField()
-    date = models.DateField()
-    customerID = models.CharField(max_length=300)
-    sellerID = models.ForeignKey(User,on_delete=models.CASCADE)
-    def __str__(self) -> str:
-        return self.customerID
+
 
 class Products(models.Model):
     id = models.CharField(max_length=300,primary_key=True)
+    name = models.CharField(max_length=300)
     brand = models.CharField(max_length=100,)
     category = models.CharField(max_length=100)
     asin = models.CharField(max_length=100)
@@ -32,9 +22,19 @@ class Products(models.Model):
     sellerID = models.ForeignKey(User,on_delete=models.CASCADE)
     productURL = models.CharField(max_length=300)
     spec = models.TextField()
-    technicalDetails = models.TextField(max_length=300)
-    about = models.CharField(max_length=300)
+    technicalDetails = models.TextField()
+    about =models.TextField()
     price = models.FloatField()
+    def __str__(self) -> str:
+        return str(self.id)
+class Orders(models.Model):
+    id = models.AutoField(primary_key=True)
+    orderID = models.CharField(max_length=100)
+    productID = models.ForeignKey(Products,on_delete=models.CASCADE)
+    quantity = models.IntegerField()
+    unitPrice = models.FloatField()
+    date = models.DateField()
+    sellerID = models.ForeignKey(User,on_delete=models.CASCADE)
     def __str__(self) -> str:
         return str(self.id)
 
@@ -62,6 +62,7 @@ class Reviews(models.Model):
 
 class Sentiment(models.Model):
     id = models.AutoField(primary_key=True)
+
     reviewID = models.ForeignKey(Reviews,on_delete=models.CASCADE)
     positiveRate = models.FloatField()
     negativeRate = models.FloatField()
