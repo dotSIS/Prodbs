@@ -9,11 +9,27 @@
         </div>
         <div class="container">
             <router-view/>
+            <h5>Logged in user: 
+                {{ user.firstName }}
+            </h5>
         </div>
     </div>
 </template>
 
 <script>
+export default {
+    data() {
+        return {
+            user: ''
+        }
+    },
+    mounted() {
+        fetch('http://localhost:8000/api/users/3324/')
+        .then(res => res.json())
+            .then(data => this.user = data)
+            .catch(err => console.log(err.message))
+    }
+}
 </script>
   
 <style>

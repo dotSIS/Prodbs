@@ -9,18 +9,50 @@
         </div>
         <router-view/>
         <div class="container">
-            <div v-if="product">
-                <div class="sort">
-                    <button>All</button>
-                    <button>Positive</button>
-                    <button>Negative</button>
-                    <button>Neutral</button>
+            <div class="bundle">
+                <Transition>
+                    <div v-if="product" class="generated">
+                        <h5>{{ product.name }}</h5>
+                        <div class="scroll-bundle">
+                            <p>{{ product.spec }}</p>
+                            <h5>{{"Price: ₱" + product.price + ".0"}}</h5>
+                        </div>
+                        <!-- <router-link :to="{}" @click="getReview(allSentiments)">
+                            <h5>All {{ allSentiments.length }}</h5>
+                        </router-link>
+                        <router-link :to="{}" @click="getReview(positiveSentiments)">
+                            <h5>Positive {{ positiveSentiments.length }}</h5>
+                        </router-link>
+                        <router-link :to="{}" @click="getReview(negativeSentiments)">
+                            <h5>Negative {{ negativeSentiments.length }}</h5>
+                        </router-link>
+                        <router-link :to="{}" @click="getReview(neutralSentiments)">
+                            <h5>Neutral {{ neutralSentiments.length }}</h5>
+                        </router-link> -->
+                        <button @click="getReview(allSentiments)">All {{ allSentiments.length }}</button>
+                        <button @click="getReview(positiveSentiments)">Positive {{ positiveSentiments.length }}</button>
+                        <button @click="getReview(negativeSentiments)">Negative {{ negativeSentiments.length }}</button>
+                        <button @click="getReview(neutralSentiments)">Neutral {{ neutralSentiments.length }}</button>
+                    </div>
+                    <div v-else>
+                        <p class="generated-else">Loading product details...</p>
+                    </div>
+                </Transition>
+                <div class="divider"></div>
+                <div class="suggestions1">
+                    <h5>Reviews</h5>
+                    <Transition>
+                        <div class="suggested">
+                            <div v-for="review in reviews" :key="review.id" class="items">
+                                <div>
+                                    <h4>{{ review['customerName'] }}</h4>
+                                    <p>{{ review['textContent'] }}</p>
+                                    <p>{{ review['reviewDate'] }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </Transition>
                 </div>
-                <h1>{{ product.title }}</h1>
-                <p>{{ product.details }}</p>
-            </div>
-            <div v-else>
-                <p>Loading product details...</p>
             </div>
         </div>
     </div>
@@ -28,17 +60,60 @@
 
 <script>
 export default {
+    name: 'ProductDetails',
     props: ['id'],
     data() {
         return {
-            product: null
+            reviews: [],
+            product: [],
+            allSentiments: [],
+            positiveSentiments: [],
+            negativeSentiments: [],
+            neutralSentiments: []
         }
     },
     mounted() {
-        fetch('http://localhost:3000/products/' + this.id)
+        fetch('http://localhost:8000/api/products/' + this.id + '/')
             .then(res => res.json())
             .then(data => this.product = data)
             .catch(err => console.log(err.message))
+
+        fetch('http://localhost:8000/api/analizeproductreviews/?product=' + this.id)
+            .then(res => res.json())
+            .then(data => {
+                data.forEach(element => {
+                    this.allSentiments.unshift(element)
+                    switch (element['overallSentiment']) {
+                        case "Positive":
+                            this.positiveSentiments.unshift(element)
+                            break;
+                        case "Negative":
+                            this.negativeSentiments.unshift(element)
+                            break;
+                        case "Neutral":
+                            this.neutralSentiments.unshift(element)
+                            break;
+                        default:
+                            break;
+                    }
+                    
+                });
+               
+            })
+            .catch(err => console.log(err.message))
+    },
+    methods: {
+        getReview(sentiment) {
+            this.reviews = []
+            for(var value in sentiment){
+                fetch('http://localhost:8000/api/reviews/' + sentiment[value]['reviewID']+'/')
+                .then(res => res.json())
+                .then(data => {
+                    this.reviews.unshift(data)
+                })
+                .catch(err => console.log(err.message))
+            }
+        }
     }
 }
 </script>

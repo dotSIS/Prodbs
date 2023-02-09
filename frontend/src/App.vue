@@ -128,9 +128,102 @@
     .container {
         width: 640px;
         height: 320px;
+        padding: 10px;
         border: 1px solid #444;
         border-radius: 5px;
         overflow-y: auto;
+    }
+    .container p {
+        font-size: 0.8em;
+    }
+    .bundle {
+        height: 320px;
+        display: flex;
+        flex-direction: row;
+    }
+    .bundle .generated {
+        width: 50%;
+        border-radius: 10px;
+        overflow-y: auto;
+    }
+    .bundle .generated-else {
+        width: 319px;
+        height: 320px;
+    }
+    .bundle .generate h2 {
+        background: #f4f4f4;
+        font-size: 0.7em;
+        padding: 10px;
+        border-radius: 10px;
+        margin: 10px 10px;
+        width: 260px;
+        height: 10px;
+        cursor: pointer;
+        color: #444;
+    }
+    .bundle .generate h2:hover {
+        background: #ddd;
+    }
+    .bundle .generate a {
+        text-decoration: none;
+    }
+    .divider {
+        border: 1px solid #444;
+    }
+    .suggestions {
+        width: 50%;
+        overflow-y: hidden;
+        overflow-x: hidden;
+    }
+    .suggestions1 {
+        width: 50%;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+    .suggestions .suggested {
+        width: 319px;
+        height: 320px;
+        padding: 0px 10px 10px 10px;
+    }
+    .suggested-else {
+        width: 319px;
+        height: 320px;
+    }
+    .suggestions .suggested h2 {
+        background: #f4f4f4;
+        font-size: 0.7em;
+        padding: 10px;
+        border-radius: 10px;
+        margin: 10px 10px;
+        width: 260px;
+        height: 10px;
+        cursor: pointer;
+        color: #444;
+    }
+    .suggestions .suggested h2:hover {
+        background: #ddd;
+    }
+    .suggestions .suggested .item-div {
+        display: flex;
+        flex-direction: row;
+    }
+    .suggestions .suggested .submit:hover {
+        background: #ddd;
+        color: black;
+    }
+    .suggestions .suggested .selected-items {
+        background: transparent;
+        color: #444;
+        padding: 5px 5px 5px 5px;
+        margin: 5px 5px 5px 5px;
+        border-radius: 10px;
+    }
+    .suggestions .suggested span {
+        font-size: 0.6em;
+        border-radius: 10px;
+    }
+    .suggestions .items a {
+        text-decoration: none;
     }
     div.sort button {
         width: 75px;
@@ -160,8 +253,53 @@
     .product a {
         text-decoration: none;
     }
-    .product img {
-        width: 5%;
-        height: 5%;
+    .bundle h2 {
+        background: #f4f4f4;
+        padding: 20px;
+        border-radius: 10px;
+        margin: 10px auto;
+        max-width: 600px;
+        cursor: pointer;
+        color: #444;
+    }
+    .bundle h2:hover {
+        background: #ddd;
+    }
+    .bundle a {
+        text-decoration: none;
+    }
+    .bundles-view {
+        height: 320px;
+        display: flex;
+        flex-direction: row;
+    }
+    .bundles-view .generated {
+        width: 50%;
+        border-radius: 10px;
+        overflow-y: auto;
+    }
+    .bundles-view .generated-else {
+        width: 319px;
+        height: 320px;
+    }
+    .bundles-view .generate h2 {
+        background: #f4f4f4;
+        font-size: 0.7em;
+        padding: 10px;
+        border-radius: 10px;
+        margin: 10px 10px;
+        width: 260px;
+        height: 10px;
+        cursor: pointer;
+        color: #444;
+    }
+    .bundles-view .generate h2:hover {
+        background: #ddd;
+    }
+    .bundles-view .generate a {
+        text-decoration: none;
+    }
+    .divider {
+        border: 1px solid #444;
     }
 </style>
