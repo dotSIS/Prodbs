@@ -26,13 +26,11 @@ SECRET_KEY = "django-insecure-hf2*s#)to%wchh!l&s#alqulc!=m_y7zf@81nc&4*r7ao8m!k(
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    '192.168.79.196',
-    '27.0.0.1'
+    'localhost',
+    '127.0.0.1'
 ]
 
-
 # Application definition
-
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -41,7 +39,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "api.apps.ApiConfig",
-    "rest_framework"
+    "rest_framework",
+    "corsheaders"
 ]
 
 MIDDLEWARE = [
@@ -52,7 +51,17 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "corsheaders.middleware.CorsMiddleware"
 ]
+
+CORS_ALLOWED_ORIGINS = [
+    "http://127.0.0.1:8080",
+    "http://localhost:8080",
+    "http://127.0.0.1:8000",
+    "http://localhost:8000"
+]
+
+CORS_ORIGIN_ALLOW_ALL = False
 
 ROOT_URLCONF = "prodbs.urls"
 
