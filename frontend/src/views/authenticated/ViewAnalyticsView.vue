@@ -67,9 +67,9 @@ export default {
                             'value':data[0][x]
                         }
                     )
-                    count+=1
+                    count += 1
                 }
-                var count =1
+                var count = 1
                 for(var x in data[1]){
                     this.analytics1.unshift(
                         {
@@ -77,7 +77,7 @@ export default {
                             'value':data[1][x]
                         }
                     )
-                    count+=1
+                    count += 1
                 }
             })
             .catch(err => console.log(err.message))
