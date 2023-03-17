@@ -67,7 +67,7 @@ export default {
             bundle: [],
             tempBundle: [],
             item: '',
-            seletedProductID: ''
+            selectedProductID: ''
         }
     },
     mounted() {
@@ -80,7 +80,7 @@ export default {
     },
     methods: {
         generateBundle(productID) {
-           this.seletedProductID = productID
+           this.selectedProductID = productID
             this.bundle = []
             fetch('http://localhost:8000/api/generatebundle/?product=' + productID)
                 .then(res => res.json())
@@ -114,27 +114,27 @@ export default {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ 'sellerID': "3324",})
             };
-            fetch('http://localhost:8000/api/bundleproducts/',requestOptions)
+            fetch('http://localhost:8000/api/bundleproducts/', requestOptions)
             .then(resj => resj.json())
-            .then((res)=>{
+            .then((res) => {
                     var id = res.id
                     let productBundle =[]
-                    // seletedProductID
+                    // seletcedProductID
                     const data = {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify(
                             {
                                 'bundleProductID':id,
-                                'productID':this.seletedProductID
+                                'productID':this.selectedProductID
                             }
                         )
                     };
-                    fetch('http://localhost:8000/api/productbundle/',data).then((r)=>{
+                    fetch('http://localhost:8000/api/productbundle/', data).then((r)=>{
                         
                     })
                     this.bundle.forEach(
-                        (bun)=>{
+                        (bun) => {
                             const data = {
                                 method: "POST",
                                 headers: { "Content-Type": "application/json" },
@@ -145,7 +145,7 @@ export default {
                                     }
                                 )
                             };
-                            fetch('http://localhost:8000/api/productbundle/',data).then((r)=>{
+                            fetch('http://localhost:8000/api/productbundle/', data).then((r)=>{
                                 this.bundles = [],
                                 this.bundle = []
                             })
@@ -154,14 +154,6 @@ export default {
                 }
                     
             )
-            
-            // this.bundle.forEach((value)=>{
-            //     productBundles.unshift(
-            //         {
-            //             ''
-            //         }
-            //     )
-            // })
         }
     }
 }
