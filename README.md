@@ -19,6 +19,7 @@ Prodbs Analytics: A Web Application for Online Product Bundles and Reviews Utili
   ### Backend
   - `cd Prodbs/backbone`
   - `python env\Scripts\activate`
+  - `pip install -r requirements.txt`
   - `cd prodbs`
     #### Over the network
     - `python manage.py runserver 0.0.0.0:8000`
