@@ -106,7 +106,7 @@ export default {
         getReview(sentiment) {
             this.reviews = []
             for(var value in sentiment){
-                fetch('http://localhost:8000/api/reviews/' + sentiment[value]['reviewID']+'/')
+                fetch('http://localhost:8000/api/reviews/' + sentiment[value]['reviewID'] + '/')
                 .then(res => res.json())
                 .then(data => {
                     this.reviews.unshift(data)

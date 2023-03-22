@@ -72,7 +72,7 @@ export default {
                 .then(data => {
                     this.products = []
                     data.forEach(element => {
-                        fetch("http://localhost:8000/api/products/" + element.productID+'/')
+                        fetch("http://localhost:8000/api/products/" + element.productID + '/')
                         .then(res => res.json())
                         .then(prodRe => {
                             this.products.unshift(prodRe);
