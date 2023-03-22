@@ -87,7 +87,7 @@ export default {
                 .then(bundle_data => {
                     this.bundles = [];
                     bundle_data['consequents'].forEach(element => {
-                        fetch("http://localhost:8000/api/products/"+element+'/')
+                        fetch("http://localhost:8000/api/products/" + element + '/')
                         .then(res => res.json())
                         .then(prodRe => {
                             this.bundles.unshift(prodRe);
@@ -119,7 +119,7 @@ export default {
             .then((res) => {
                     var id = res.id
                     let productBundle =[]
-                    // seletcedProductID
+                    // selectedProductID
                     const data = {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
