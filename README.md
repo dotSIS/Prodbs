@@ -1,3 +1,9 @@
+<div class="info">
+    <p align='center'>
+        <img src="https://raw.githubusercontent.com/dotSIS/Prodbs/main/frontend/src/assets/logo.svg">
+    </p>
+</div>
+
 # Prodbs
 Prodbs Analytics: A Web Application for Online Product Bundles and Reviews Utilizing Market Basket and Sentiment Analysis.
 
