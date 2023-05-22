@@ -17,18 +17,6 @@
                             <p>{{ product.spec }}</p>
                             <h5>{{"Price: ₱" + product.price + ".0"}}</h5>
                         </div>
-                        <!-- <router-link :to="{}" @click="getReview(allSentiments)">
-                            <h5>All {{ allSentiments.length }}</h5>
-                        </router-link>
-                        <router-link :to="{}" @click="getReview(positiveSentiments)">
-                            <h5>Positive {{ positiveSentiments.length }}</h5>
-                        </router-link>
-                        <router-link :to="{}" @click="getReview(negativeSentiments)">
-                            <h5>Negative {{ negativeSentiments.length }}</h5>
-                        </router-link>
-                        <router-link :to="{}" @click="getReview(neutralSentiments)">
-                            <h5>Neutral {{ neutralSentiments.length }}</h5>
-                        </router-link> -->
                         <button @click="getReview(allSentiments)">All {{ allSentiments.length }}</button>
                         <button @click="getReview(positiveSentiments)">Positive {{ positiveSentiments.length }}</button>
                         <button @click="getReview(negativeSentiments)">Negative {{ negativeSentiments.length }}</button>
@@ -107,11 +95,11 @@ export default {
             this.reviews = []
             for(var value in sentiment){
                 fetch('http://localhost:8000/api/reviews/' + sentiment[value]['reviewID'] + '/')
-                .then(res => res.json())
-                .then(data => {
-                    this.reviews.unshift(data)
-                })
-                .catch(err => console.log(err.message))
+                    .then(res => res.json())
+                    .then(data => {
+                        this.reviews.unshift(data)
+                    })
+                    .catch(err => console.log(err.message))
             }
         }
     }
