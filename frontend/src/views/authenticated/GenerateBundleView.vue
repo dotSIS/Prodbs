@@ -80,7 +80,7 @@ export default {
     },
     methods: {
         generateBundle(productID) {
-           this.selectedProductID = productID
+            this.selectedProductID = productID
             this.bundle = []
             fetch('http://localhost:8000/api/generatebundle/?product=' + productID)
                 .then(res => res.json())
@@ -88,10 +88,10 @@ export default {
                     this.bundles = [];
                     bundle_data['consequents'].forEach(element => {
                         fetch("http://localhost:8000/api/products/" + element + '/')
-                        .then(res => res.json())
-                        .then(prodRe => {
-                            this.bundles.unshift(prodRe);
-                        });
+                            .then(res => res.json())
+                            .then(prodRe => {
+                                this.bundles.unshift(prodRe);
+                            });
                     })
                 })
                 .catch(err => console.log(err.message))
@@ -115,8 +115,8 @@ export default {
                 body: JSON.stringify({ 'sellerID': "3324",})
             };
             fetch('http://localhost:8000/api/bundleproducts/', requestOptions)
-            .then(resj => resj.json())
-            .then((res) => {
+                .then(resj => resj.json())
+                .then((res) => {
                     var id = res.id
                     let productBundle =[]
                     // selectedProductID

@@ -25,7 +25,7 @@ export default {
     },
     mounted() {
         fetch('http://localhost:8000/api/users/3324/')
-        .then(res => res.json())
+            .then(res => res.json())
             .then(data => this.user = data)
             .catch(err => console.log(err.message))
     }
