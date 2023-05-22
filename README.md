@@ -7,15 +7,16 @@
 # Prodbs
 Prodbs Analytics: A Web Application for Online Product Bundles and Reviews Utilizing Market Basket and Sentiment Analysis.
 
-## Clone
-- `git clone https://github.com/dotSIS/Prodbs.git`
 ## Requirements
 Click the links for the instructions on how to install each of the requirements on your machine.
+- [`Git`](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 - [`Python`](https://www.python.org/downloads/)
 - [`PIP`](https://pip.pypa.io/en/stable/installation/)
 - [`DJango`](https://www.djangoproject.com/download/)
 - [`NodeJS`](https://nodejs.org/en/download)
 - [`VueJS`](https://cli.vuejs.org/guide/installation.html)
+## Clone
+- `git clone https://github.com/dotSIS/Prodbs.git`
 ## Installation & Deployment
   ### Frontend
   - `cd Prodbs/frontend`
