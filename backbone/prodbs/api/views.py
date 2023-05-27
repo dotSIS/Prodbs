@@ -18,36 +18,38 @@ from collections import Counter
 from mlxtend.preprocessing import TransactionEncoder
 from mlxtend.frequent_patterns import apriori, association_rules
 
-
-
 class UserList(generics.ListCreateAPIView):
     serializer_class = UserSerializer
-    # queryset = User.objects.all()
+    
     def get_queryset(self):
         queryset = User.objects.all()
         id = self.request.query_params.get('id')
+        
         if id is not None:
             queryset = queryset.filter(id=id)
-        return queryset
-        
+            
+        return queryset        
 
 class UserDetails(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = UserSerializer
     queryset = User.objects.all()
 
-
 class ProductList(generics.ListCreateAPIView):
     serializer_class = ProductSerializer
+    
     def get_queryset(self):
         queryset = Products.objects.all()
         user = self.request.query_params.get('seller')
+        
         if user is not None:
             queryset = queryset.filter(sellerID=user)
+            
         productName = self.request.query_params.get('name')
+        
         if productName is not None:
             queryset = queryset.filter(name=productName)
+            
         return queryset
-
 
 class ProductDetails(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = ProductSerializer
@@ -55,11 +57,14 @@ class ProductDetails(generics.RetrieveUpdateDestroyAPIView):
 
 class OrderList(generics.ListCreateAPIView):
     serializer_class = OrderSerializer
+    
     def get_queryset(self):
         queryset = Orders.objects.all()
         user = self.request.query_params.get('seller')
+        
         if user is not None:
             queryset = queryset.filter(sellerID=user)
+            
         return queryset
 
 class OrderDetails(generics.RetrieveUpdateDestroyAPIView):
@@ -68,11 +73,14 @@ class OrderDetails(generics.RetrieveUpdateDestroyAPIView):
 
 class BundleProductList(generics.ListCreateAPIView):
     serializer_class = BundleProductSerializer
+    
     def get_queryset(self):
         queryset = BundleProducts.objects.all()
         user = self.request.query_params.get('seller')
+        
         if user is not None:
             queryset = queryset.filter(sellerID=user)
+            
         return queryset
 
 class BundleProductDetails(generics.RetrieveUpdateDestroyAPIView):
@@ -81,14 +89,18 @@ class BundleProductDetails(generics.RetrieveUpdateDestroyAPIView):
 
 class ProductBundleList(generics.ListCreateAPIView):
     serializer_class = ProductBundleSerializer
+    
     def get_queryset(self):
         queryset = ProductBundles.objects.all()
         bundleProduct = self.request.query_params.get('bundleproduct')
         product = self.request.query_params.get('product')
+        
         if bundleProduct is not None:
             queryset = queryset.filter(bundleProductID=bundleProduct)
+            
         if product is not None:
             queryset = queryset.filter(productID=product)
+            
         return queryset
 
 class ProductBundleDetails(generics.RetrieveUpdateDestroyAPIView):
@@ -97,11 +109,14 @@ class ProductBundleDetails(generics.RetrieveUpdateDestroyAPIView):
 
 class ReviewList(generics.ListCreateAPIView):
     serializer_class = ReviewSerializer
+    
     def get_queryset(self):
         queryset = Reviews.objects.all()
         product = self.request.query_params.get('product')
+        
         if product is not None:
             queryset = queryset.filter(productID=product)
+            
         return queryset
 
 class ReviewDetails(generics.RetrieveUpdateDestroyAPIView):
@@ -110,11 +125,14 @@ class ReviewDetails(generics.RetrieveUpdateDestroyAPIView):
 
 class SentimentList(generics.ListCreateAPIView):
     serializer_class = SentimentSerializer
+    
     def get_queryset(self):
         queryset = Sentiment.objects.all()
         review = self.request.query_params.get('review')
+        
         if review is not None:
             queryset = queryset.filter(reviewID=review)
+            
         return queryset
 
 class SentimentDetails(generics.RetrieveUpdateDestroyAPIView):
@@ -127,11 +145,14 @@ def analizeProductReviews(request):
     serializer_class = SentimentSerializer
     reviews = Reviews.objects.all()
     product = request.query_params.get('product')
-    autoSave = True if request.query_params.get('autosave')=='true' else False
+    autoSave = True if request.query_params.get('autosave') == 'true' else False
+    
     if product is not None:
         reviews = reviews.filter(productID=product)
+        
     reviewsList = reviews.all()
     sentiments = []
+    
     for review in reviewsList:
         sentiment = sentiment_scores(review.textContent)
         data = {
@@ -144,24 +165,30 @@ def analizeProductReviews(request):
         
         if autoSave:
             sentimentModel = SentimentSerializer(data=data)
+            
             if sentimentModel.is_valid():
                 sentimentModel.save()
+                
             else:
                 print("AHHHHHHHHHH")
+                
         sentiments.append(data)
+        
     return Response(sentiments)
+
 def zhangs_rule(rules):
     rule_support = rules['support'].copy()
     rule_ante = rules['antecedent support'].copy()
     rule_conseq = rules['consequent support'].copy()
     num = rule_support - (rule_ante * rule_conseq)
-    denom = np.max((rule_support * (1 - rule_ante).values, 
-                          rule_ante * (rule_conseq - rule_support).values), axis = 0)
+    denom = np.max((rule_support * (1 - rule_ante).values, rule_ante * (rule_conseq - rule_support).values), axis = 0)
     return num / denom
+
 def load():
     orders = Orders.objects.all()
     orders = orders.filter(sellerID='3324')#in production it will load all the registered user order datas for faster bundle generation
     newOrders = []
+    
     for order in orders:
         date = str(order.date).split('-')
         dateObject = datetime. strptime(str(order.date), '%Y-%m-%d')
@@ -174,8 +201,8 @@ def load():
             'day':date[2],
             'day_of_week':dateObject.weekday()
         })
+        
     newOrders = pd.DataFrame(newOrders)
-
     freq_items = newOrders['itemDescription'].value_counts()
     user_id = newOrders['Member_number'].unique()
     items = [list(newOrders.loc[newOrders['Member_number'] == id, 'itemDescription']) for id in user_id]
@@ -195,21 +222,23 @@ def load():
 rules = load()
 @api_view(['GET'])
 def generateBundle(request):
+    
     try:
         product = request.query_params.get('product')
         print(product)
-        rules_sel = rules[rules["antecedents"].apply(lambda x:product  in x)]
+        rules_sel = rules[rules["antecedents"].apply(lambda x:product in x)]
         rules_sel.sort_values('confidence', ascending=False)
-        # get the most important 5 items that customers would buy after purchasing whole milk 
-        rules_support = rules_sel['support'] >= rules_sel['support'].quantile(q = 0.95)
+        rules_support = rules_sel['support'] >= rules_sel['support'].quantile(q = 0.95)# get the most important 5 items that customers would buy after purchasing whole milk 
         rules_confi = rules_sel['confidence'] >= rules_sel['confidence'].quantile(q = 0.95)
         rules_lift = rules_sel['lift'] > 1
         rules_zhang = rules_sel['zhang'] > 0
         rules_best = rules_sel[rules_support & rules_confi & rules_lift & rules_zhang]
         print(rules_best)
+        
         if len(rules_best)<=0:return Response({
             'error':'Can\'t generate bundle'
         })
+        
         returned_targets = {
             'antecedents':product,
             'consequents':[]
@@ -218,21 +247,19 @@ def generateBundle(request):
         for target in rules_best.iloc:
             conseq = str(target["consequents"]).split("frozenset({'")[1].replace("'})","")
             returned_targets['consequents'].append(conseq)
-        print(returned_targets)
+            
+        print(returned_targets)        
         return Response(returned_targets)
+    
     except:
         return Response({
             'error':'bad request'
         })
 
-
-
 @api_view(['GET'])
 def getAnalytics(request):
     orders = Orders.objects.all()
     orders = orders.filter(sellerID='3324')
-    # try:
-
     months = {
         '1':0,
         '2':0,
@@ -268,10 +295,3 @@ def getAnalytics(request):
         years[str(yer)]+=(order.quantity*order.unitPrice)
 
     return Response([months,years])
-    # except:
-    #     return Response({
-    #         'error':'bad request'
-    #     }) 
-
-
-    
